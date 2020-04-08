@@ -6,6 +6,7 @@
 CAP_PLUGIN(TwilioVoicePlugin, "TwilioVoicePlugin",
            CAP_PLUGIN_METHOD(initPlugin, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(call, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(updateCall, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(endCall, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(toggleMute, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(toggleSpeaker, CAPPluginReturnPromise);
