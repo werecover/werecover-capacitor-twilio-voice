@@ -1,0 +1,29 @@
+PODS:
+  - Capacitor (1.5.0):
+    - CapacitorCordova (= 1.5.0)
+  - CapacitorCordova (1.5.0)
+  - TwilioVoice (5.1.1)
+
+DEPENDENCIES:
+  - "Capacitor (from `../node_modules/@capacitor/ios`)"
+  - "CapacitorCordova (from `../node_modules/@capacitor/ios`)"
+  - TwilioVoice (~> 5.1.1)
+
+SPEC REPOS:
+  trunk:
+    - TwilioVoice
+
+EXTERNAL SOURCES:
+  Capacitor:
+    :path: "../node_modules/@capacitor/ios"
+  CapacitorCordova:
+    :path: "../node_modules/@capacitor/ios"
+
+SPEC CHECKSUMS:
+  Capacitor: 667658ab58e5a2e8465238eef7c6c5df46738688
+  CapacitorCordova: 5b03f0b903bf066a8f3187e848252227190b681a
+  TwilioVoice: 36bccc002e84b84a464efae705609e9913bd10a9
+
+PODFILE CHECKSUM: 27b8ce1f37863bd532de46b9e25d6d452672fcd8
+
+COCOAPODS: 1.8.4

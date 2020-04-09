@@ -8,5 +8,3 @@ node_modules
 npm-debug.log
 
 ios/Pods/
-ios/Podfile.lock
-
