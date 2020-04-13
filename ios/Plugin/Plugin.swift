@@ -94,14 +94,14 @@ public class TwilioVoicePlugin: CAPPlugin, PKPushRegistryDelegate, TVONotificati
 
             pluginCall.success()
 
+            let rehabId = pluginCall.getInt("rehabId")
+
             self.callParams = [
                 "To": to,
                 "From": pluginCall.getString("From") ?? "",
-                "to_patient_id": String(pluginCall.getInt("to_patient_id") ?? 0),
-                "to_name": pluginCall.getString("to_name") ?? "",
-                "from_user_id": String(pluginCall.getInt("from_user_id") ?? 0),
-                "from_user_name": pluginCall.getString("from_user_name") ?? ""
+                "rehabId": rehabId != nil ? String(rehabId!) : "",
             ]
+
 
             self.accessToken = token
 
