@@ -1,28 +1,65 @@
+ext.playCustomRingback = {
+    def playCustomRingback  = System.getenv("playCustomRingback");
+
+    if (playCustomRingback == null) {
+        logger.log(LogLevel.INFO, "Could not locate playCustomRingback environment variable. " +
+                "Trying local.properties")
+        Properties properties = new Properties()
+        if (project.rootProject.file('local.properties').exists()) {
+            properties.load(project.rootProject.file('local.properties').newDataInputStream())
+            playCustomRingback = properties.getProperty('playCustomRingback')
+        }
+    }
+
+    if (playCustomRingback == null) {
+        playCustomRingback = false
+    }
+
+    return playCustomRingback;
+}
+
 buildscript {
     repositories {
         jcenter()
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.2'
+        classpath 'com.android.tools.build:gradle:3.6.2'
+        classpath 'com.google.gms:google-services:4.3.3'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
     }
 }
 
 apply plugin: 'com.android.library'
+//added in the app
+//apply plugin: 'com.google.gms.google-services'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField("boolean", "playCustomRingback", "${playCustomRingback()}")
+        }
+        debug {
+            buildConfigField("boolean", "playCustomRingback", "${playCustomRingback()}")
         }
     }
     lintOptions {
@@ -40,8 +77,11 @@ repositories {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':capacitor-android')
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'com.twilio:voice-android:5.1.1'
+    implementation 'com.google.firebase:firebase-messaging:20.1.5'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
 
