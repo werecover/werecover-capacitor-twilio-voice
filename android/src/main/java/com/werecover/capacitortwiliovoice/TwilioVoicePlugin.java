@@ -81,7 +81,7 @@ public class TwilioVoicePlugin extends Plugin {
 
         HashMap<String, String> params = new HashMap<>();
         params.put("To", call.getString("To"));
-        params.put("rehabId", call.getInt("rehabId").toString());
+        params.put("providerId", call.getInt("providerId").toString());
         ConnectOptions connectOptions = new ConnectOptions.Builder(call.getString("token"))
                 .params(params)
                 .build();
